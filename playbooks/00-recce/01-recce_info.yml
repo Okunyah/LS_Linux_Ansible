@@ -1,10 +1,11 @@
+#This Ansible playbook is designed to perform a basic reconnaissance ("recce") on remote hosts, gathering OS version information and saving the results locally on the control machine
 ---
 - name: OS Information
-  hosts: all,!localhost,!127.0.0.1
-  connection: paramiko
-  gather_facts: no
-  become: no
-  ignore_errors: yes
+  hosts: all,!localhost,!127.0.0.1 #Target all remote hosts EXCEPT localhost
+  connection: paramiko # Use paramiko SSH instead of default OpenSSH
+  gather_facts: no # Skip automatic fact gathering
+  become: no #Do not escalate privileges
+  ignore_errors: yes # Don't stop if a host has errors
     
   tasks:
   - name: Get version information
